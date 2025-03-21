@@ -1,12 +1,16 @@
 const express = require("express");
-const router = express.Router();
+const route = express.Router();
+const { StatusCodes } = require("http-status-codes");
+const { createQuestion, singleQuestion, allQuestion } = require("../controller/questionController")
 
-// Import the authMiddleware function
-const {authMiddleware} = require("../Middleware/authMiddleware");
+//post question 
+route.post("/", createQuestion)
 
-router.get("/all-questions", (req, res) => {
-  res.send("Welcome to the question route");
-});
+//get single question 
+route.get("/:questionid", singleQuestion)
+
+//get all question 
+route.get("/", allQuestion)
 
 
-module.exports = router
+module.exports = route;
