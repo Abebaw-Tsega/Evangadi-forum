@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Answer.css";
 import { BsPersonCircle } from "react-icons/bs";
 import styles from "../Question/AskQuestions.module.css";
@@ -13,7 +13,7 @@ function Answer() {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState({});
   const token = localStorage.getItem("token");
-  const { userData } = useContext(AppState);
+  // const { userData } = useContext(AppState);
 
   // Create header token object
   const headerToken = { Authorization: `Bearer ${token}` };
@@ -58,9 +58,9 @@ function Answer() {
     if (newAnswer) {
       try {
         const response = await axiosBase.post(
-          `/answer/`,
+          `/answer`,
           {
-            Dataid: userData?.msg?.userid,
+
             questionid: questionid,
             answer: newAnswer,
           },

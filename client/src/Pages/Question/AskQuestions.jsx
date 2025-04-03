@@ -9,12 +9,12 @@ function AskQuestions() {
   const { userData, headerToken } = useContext(AppState);
 
   const [form, setForm] = useState({
-    username: userData?.msg?.username,
+    username: userData?.user?.username,
     title: "",
     description: "",
   });
 
-  console.log(form);
+  // console.log(form);
 
   const navigate = useNavigate();
 
@@ -24,7 +24,7 @@ function AskQuestions() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!userData || !userData?.msg?.userid) {
+    if (!userData || !userData?.user?.userid) {
       console.log("User ID is null");
       return;
     }
@@ -37,7 +37,7 @@ function AskQuestions() {
       console.log(error.response);
     }
   };
-  console.log('header',headerToken)
+  // console.log('header',headerToken)
   return (
     <Layout>
       <div className={styles.question_container}>

@@ -11,28 +11,30 @@ function Homepage() {
   const [questions, setQuestions] = useState([]);
   const navigate = useNavigate();
 
-  const fetchQuestions = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      const response = await axios.get("/questions/", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        params: { userid: userData?.msg?.userid },
-      });
-     
-      setQuestions(response.data.questions);
-      console.log(response.data.questions);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  ;
 
   useEffect(() => {
-    if (userData?.msg?.userid) {
+
+    const fetchQuestions = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await axios.get("/questions/", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          params: { userid: userData?.user?.userid },
+        });
+
+        setQuestions(response.data.questions);
+        console.log(response.data.questions);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    if (userData?.user?.userid) {
       fetchQuestions();
     }
-  }, [userData]);
+  }, [userData?.user?.userid]);
 
 
 
@@ -43,13 +45,13 @@ function Homepage() {
           <div className="head">
             <div className="row askque">
               <div className="col-md-6">
-                <button className="qb" onClick={() => navigate("/questions")}>
+                <button className="qb" onClick={() => navigate("/question")}>
                   Ask Question
                 </button>
               </div>
               <div className="col-md-6">
                 <h4 className="wel text-md-end">
-                  Welcome: {userData && userData?.msg?.username}
+                  Welcome: {userData && userData?.user?.username}
                 </h4>
               </div>
             </div>

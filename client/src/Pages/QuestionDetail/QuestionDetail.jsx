@@ -8,7 +8,7 @@ function QuestionDetail({ question }) {
 
   const handleClick = () => {
     if (question?.questionid) {
-      navigate(`/questions/${question.questionid}`);
+      navigate(`/question/${question.questionid}`);
     } else {
       console.error("No question ID available for navigation.");
     }

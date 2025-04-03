@@ -37,10 +37,10 @@ function Login() {
       setErrorMsg("Email and Password are required.");
       return;
     }
-  
+
     const payload = { email, password };
     console.log("Login attempt:", payload);
-  
+
     try {
       const response = await axios.post("/users/login", payload, {
         headers: { "Content-Type": "application/json" },
@@ -59,17 +59,17 @@ function Login() {
   const handleRegister = async (e) => {
     e.preventDefault();
     setErrorMsg("");
-  
+
     const { username, firstname, lastname, email, password } = registerForm;
-  
+
     if (!username || !firstname || !lastname || !email || !password) {
       setErrorMsg("Please provide all required information.");
       return;
     }
-  
+
     const payload = { username, firstname, lastname, email, password };
     console.log("Register attempt:", payload);
-  
+
     try {
       const response = await axios.post("/users/register", payload, {
         headers: { 'Content-Type': 'application/json' },
