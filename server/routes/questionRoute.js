@@ -3,8 +3,10 @@ const route = express.Router();
 const { StatusCodes } = require("http-status-codes");
 const { createQuestion, singleQuestion, allQuestion } = require("../controller/questionController")
 
+const { authMiddleware } = require("../Middleware/authMiddleware");
+
 //post question 
-route.post("/", createQuestion)
+route.post("/", authMiddleware, createQuestion)
 
 //get single question 
 route.get("/:questionid", singleQuestion)

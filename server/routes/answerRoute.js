@@ -2,7 +2,7 @@ const express = require("express")
 const route = express.Router();
 const { createAnswer, getAnswer } = require("../controller/answerController")
 
-route.post("/",   )
+route.post("/",  createAnswer )
 
 route.get("/:questionid", getAnswer)
 
